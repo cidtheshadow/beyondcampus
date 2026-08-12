@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Punjoy Bathinda Trip — BeyondCampus.Co</title>
+  <meta name="description" content="BeyondCampus.Co takes you to Punjoy Bathinda — waterpark, adventure park, gaming zone & more. Grab your passes now!"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{
+      --gold:#f5c518;
+      --orange:#ff6b35;
+      --cyan:#00d4ff;
+      --deep:#080c1e;
+      --navy:#0d1535;
+      --card:#111827;
+      --glass:rgba(255,255,255,0.06);
+      --gb:rgba(255,255,255,0.12);
+      --t1:#ffffff;
+      --t2:rgba(255,255,255,0.65);
+      --t3:rgba(255,255,255,0.35);
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:'Outfit',sans-serif;background:var(--deep);color:var(--t1);overflow-x:hidden}
+
+    /* ─── SCROLLBAR ─── */
+    ::-webkit-scrollbar{width:5px}
+    ::-webkit-scrollbar-track{background:var(--deep)}
+    ::-webkit-scrollbar-thumb{background:var(--gold);border-radius:10px}
+
+    /* ─── NAV ─── */
+    nav{
+      position:fixed;top:0;left:0;right:0;z-index:200;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:0 48px;height:68px;
+      background:rgba(8,12,30,0.7);
+      backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);
+      border-bottom:1px solid rgba(255,255,255,0.07);
+      transition:background .3s;
+    }
+    nav.scrolled{background:rgba(8,12,30,0.97)}
+    .logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+    .logo-badge{
+      width:42px;height:42px;border-radius:11px;
+      background:linear-gradient(135deg,var(--gold),var(--orange));
+      display:flex;align-items:center;justify-content:center;
+      font-weight:900;font-size:1rem;color:var(--deep);
+      box-shadow:0 4px 15px rgba(245,197,24,.4);
+    }
+    .logo-text{font-weight:800;font-size:1rem;color:var(--gold);letter-spacing:.3px}
+    .logo-sub{font-size:.65rem;color:var(--t3);letter-spacing:1.5px;text-transform:uppercase;margin-top:-2px}
+    .nav-right{display:flex;align-items:center;gap:14px}
+    .nav-consent{
+      display:flex;align-items:center;gap:6px;
+      font-size:.82rem;font-weight:600;color:var(--t2);
+      padding:8px 18px;border-radius:50px;
+      border:1px solid rgba(255,255,255,0.15);
+      text-decoration:none;
+      transition:border-color .2s,color .2s;
+    }
+    .nav-consent:hover{border-color:var(--gold);color:var(--gold)}
+    .nav-pass{
+      display:flex;align-items:center;gap:6px;
+      background:linear-gradient(135deg,var(--gold),var(--orange));
+      color:var(--deep);font-weight:800;font-size:.88rem;
+      padding:9px 22px;border-radius:50px;text-decoration:none;
+      box-shadow:0 4px 18px rgba(245,197,24,.35);
+      transition:transform .2s,box-shadow .2s;
+    }
+    .nav-pass:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(245,197,24,.55)}
+
+    /* ─── HERO ─── */
+    #hero{
+      position:relative;min-height:100vh;
+      display:flex;align-items:center;
+      overflow:hidden;
+    }
+    .hero-bg{
+      position:absolute;inset:0;
+      background:url('hero-bg.jpg') center/cover no-repeat;
+      animation:kZoom 24s ease-in-out infinite alternate;
+    }
+    @keyframes kZoom{from{transform:scale(1.04) translateX(0)}to{transform:scale(1.12) translateX(-20px)}}
+    .hero-overlay{
+      position:absolute;inset:0;
+      background:linear-gradient(105deg,rgba(8,12,30,.92) 38%,rgba(8,12,30,.4) 100%);
+    }
+    /* decorative shape */
+    .hero-shape{
+      position:absolute;right:-80px;top:50%;transform:translateY(-50%);
+      width:55vw;max-width:700px;height:80vh;
+      background:linear-gradient(140deg,rgba(245,197,24,.07),rgba(255,107,53,.05));
+      border:1px solid rgba(245,197,24,.1);
+      border-radius:40px 40px 40px 120px;
+      pointer-events:none;
+    }
+    .hero-content{
+      position:relative;z-index:2;
+      padding:120px 48px 80px;
+      max-width:680px;
+      animation:fadeSlide .9s ease both;
+    }
+    @keyframes fadeSlide{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+    .hero-pill{
+      display:inline-flex;align-items:center;gap:8px;
+      background:rgba(245,197,24,.1);border:1px solid rgba(245,197,24,.3);
+      border-radius:50px;padding:7px 18px;
+      font-size:.75rem;font-weight:700;letter-spacing:2px;
+      text-transform:uppercase;color:var(--gold);margin-bottom:26px;
+    }
+    .blink{width:7px;height:7px;background:#4ade80;border-radius:50%;animation:blink 1.5s ease infinite}
+    @keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(1.6)}}
+    .hero-h1{
+      font-size:clamp(3.5rem,8vw,6.5rem);font-weight:900;line-height:.95;
+      margin-bottom:6px;
+      background:linear-gradient(130deg,#fff 10%,var(--gold) 55%,var(--orange) 100%);
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+    }
+    .hero-h1 span{
+      display:block;font-size:clamp(1.5rem,3.5vw,2.8rem);font-weight:700;
+      background:linear-gradient(90deg,var(--orange),var(--gold));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+      letter-spacing:3px;margin-bottom:8px;
+    }
+    .hero-desc{font-size:1.05rem;color:var(--t2);line-height:1.75;max-width:480px;margin-bottom:18px}
+    .hero-slogan{
+      display:inline-block;font-size:.93rem;font-style:italic;color:var(--gold);
+      background:rgba(245,197,24,.09);border:1px solid rgba(245,197,24,.22);
+      border-radius:50px;padding:9px 22px;margin-bottom:36px;font-weight:500;
+    }
+    .hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+    .btn-gold{
+      display:inline-flex;align-items:center;gap:8px;
+      background:linear-gradient(135deg,var(--gold),var(--orange));
+      color:var(--deep);font-weight:800;font-size:1rem;
+      padding:15px 36px;border-radius:50px;text-decoration:none;
+      box-shadow:0 6px 28px rgba(245,197,24,.4);
+      transition:transform .25s,box-shadow .25s;
+    }
+    .btn-gold:hover{transform:translateY(-3px);box-shadow:0 12px 40px rgba(245,197,24,.65)}
+    .btn-ghost{
+      display:inline-flex;align-items:center;gap:8px;
+      border:1.5px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.06);backdrop-filter:blur(8px);
+      color:#fff;font-weight:700;font-size:1rem;
+      padding:15px 36px;border-radius:50px;text-decoration:none;
+      transition:background .25s,transform .25s;
+    }
+    .btn-ghost:hover{background:rgba(255,255,255,.13);transform:translateY(-3px)}
+    /* hero floating cards */
+    .hero-floats{
+      position:absolute;right:5%;top:50%;transform:translateY(-50%);
+      display:flex;flex-direction:column;gap:14px;z-index:3;
+    }
+    .float-card{
+      background:rgba(13,21,53,.75);backdrop-filter:blur(14px);
+      border:1px solid rgba(255,255,255,.1);border-radius:16px;
+      padding:14px 18px;display:flex;align-items:center;gap:12px;
+      animation:floatY 3s ease-in-out infinite;min-width:200px;
+    }
+    .float-card:nth-child(2){animation-delay:.8s}
+    .float-card:nth-child(3){animation-delay:1.5s}
+    @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+    .float-icon{font-size:1.6rem}
+    .float-label{font-size:.72rem;color:var(--t3);text-transform:uppercase;letter-spacing:1px}
+    .float-val{font-size:.95rem;font-weight:700;color:#fff}
+    /* scroll cue */
+    .scroll-cue{
+      position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
+      display:flex;flex-direction:column;align-items:center;gap:6px;
+      color:var(--t3);font-size:.68rem;letter-spacing:2px;text-transform:uppercase;
+      animation:scrollBounce 2s ease infinite;
+    }
+    @keyframes scrollBounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+    .scroll-line{width:1px;height:36px;background:linear-gradient(to bottom,transparent,rgba(255,255,255,.35))}
+
+    /* ─── STATS ─── */
+    .stats-bar{
+      background:linear-gradient(90deg,rgba(245,197,24,.08),rgba(255,107,53,.06),rgba(0,212,255,.05));
+      border-top:1px solid rgba(255,255,255,.06);
+      border-bottom:1px solid rgba(255,255,255,.06);
+      display:flex;justify-content:center;flex-wrap:wrap;
+    }
+    .stat{
+      flex:1;min-width:140px;max-width:220px;
+      text-align:center;padding:28px 20px;
+      border-right:1px solid rgba(255,255,255,.07);
+    }
+    .stat:last-child{border-right:none}
+    .stat-n{font-size:2.1rem;font-weight:900;color:var(--gold);line-height:1}
+    .stat-l{font-size:.72rem;color:var(--t3);text-transform:uppercase;letter-spacing:1.5px;margin-top:5px}
+
+    /* ─── SECTION BASE ─── */
+    .sec{padding:88px 48px;max-width:1160px;margin:0 auto}
+    .tag{
+      display:inline-block;font-size:.72rem;font-weight:700;
+      text-transform:uppercase;letter-spacing:2px;color:var(--gold);
+      background:rgba(245,197,24,.1);border:1px solid rgba(245,197,24,.28);
+      padding:5px 15px;border-radius:50px;margin-bottom:14px;
+    }
+    .sec-title{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:900;line-height:1.1;margin-bottom:12px}
+    .sec-sub{font-size:.98rem;color:var(--t2);max-width:540px;line-height:1.75}
+
+    /* ─── ATTRACTIONS GALLERY (Dribbble-inspired card layout) ─── */
+    #attractions{background:linear-gradient(180deg,var(--deep) 0%,#0a1020 100%)}
+    .attract-grid{
+      display:grid;
+      grid-template-columns:1.5fr 1fr;
+      grid-template-rows:auto auto;
+      gap:18px;margin-top:50px;
+    }
+    .attract-card{
+      position:relative;border-radius:24px;overflow:hidden;cursor:pointer;
+      transition:transform .35s cubic-bezier(.25,.8,.25,1),box-shadow .35s;
+    }
+    .attract-card:hover{transform:scale(1.025);box-shadow:0 30px 70px rgba(0,0,0,.6)}
+    .attract-card img{
+      width:100%;height:100%;object-fit:cover;display:block;
+      transition:transform .6s ease;
+    }
+    .attract-card:hover img{transform:scale(1.06)}
+    .attract-card.big{grid-row:span 2;min-height:480px}
+    .attract-card.sm{min-height:220px}
+    .card-overlay{
+      position:absolute;inset:0;
+      background:linear-gradient(0deg,rgba(8,12,30,.85) 0%,rgba(8,12,30,.1) 60%,transparent 100%);
+    }
+    .card-label{
+      position:absolute;bottom:0;left:0;right:0;padding:24px;
+    }
+    .card-tag{
+      display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:1.5px;
+      text-transform:uppercase;color:var(--gold);
+      background:rgba(245,197,24,.18);border:1px solid rgba(245,197,24,.3);
+      border-radius:50px;padding:4px 12px;margin-bottom:8px;
+    }
+    .card-title{font-size:1.35rem;font-weight:800;line-height:1.2}
+    .card-desc{font-size:.82rem;color:var(--t2);margin-top:4px}
+    .card-arrow{
+      position:absolute;top:18px;right:18px;
+      width:36px;height:36px;border-radius:50%;
+      background:rgba(255,255,255,.12);backdrop-filter:blur(8px);
+      display:flex;align-items:center;justify-content:center;
+      font-size:1rem;color:#fff;
+      transition:background .2s;
+    }
+    .attract-card:hover .card-arrow{background:var(--gold);color:var(--deep)}
+
+    /* ─── CONSENT FORM DOWNLOAD ─── */
+    #consent{background:#080c1e}
+    .consent-box{
+      margin-top:44px;
+      background:linear-gradient(135deg,rgba(245,197,24,.07),rgba(255,107,53,.06));
+      border:1.5px solid rgba(245,197,24,.2);
+      border-radius:28px;padding:44px 48px;
+      display:flex;align-items:center;justify-content:space-between;
+      gap:32px;flex-wrap:wrap;
+      position:relative;overflow:hidden;
+    }
+    .consent-box::before{
+      content:'📝';position:absolute;right:-20px;top:-30px;
+      font-size:10rem;opacity:.04;pointer-events:none;
+    }
+    .consent-left h3{font-size:1.5rem;font-weight:800;margin-bottom:8px}
+    .consent-left p{font-size:.9rem;color:var(--t2);line-height:1.7;max-width:480px}
+    .consent-steps{
+      display:flex;flex-direction:column;gap:10px;margin-top:18px;
+    }
+    .cs{display:flex;align-items:center;gap:10px;font-size:.86rem;color:var(--t2)}
+    .cs-num{
+      width:26px;height:26px;border-radius:50%;flex-shrink:0;
+      background:linear-gradient(135deg,var(--gold),var(--orange));
+      color:var(--deep);font-weight:800;font-size:.78rem;
+      display:flex;align-items:center;justify-content:center;
+    }
+    .consent-right{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+    .btn-download{
+      display:inline-flex;align-items:center;gap:10px;
+      background:linear-gradient(135deg,var(--gold),var(--orange));
+      color:var(--deep);font-weight:800;font-size:1rem;
+      padding:16px 34px;border-radius:50px;text-decoration:none;
+      box-shadow:0 6px 28px rgba(245,197,24,.4);
+      transition:transform .25s,box-shadow .25s;white-space:nowrap;
+    }
+    .btn-download:hover{transform:translateY(-3px);box-shadow:0 12px 38px rgba(245,197,24,.6)}
+    .btn-preview{
+      display:inline-flex;align-items:center;gap:8px;
+      font-size:.85rem;color:var(--t2);text-decoration:none;
+      padding:10px 20px;border-radius:50px;
+      border:1px solid rgba(255,255,255,.14);
+      transition:border-color .2s,color .2s;
+    }
+    .btn-preview:hover{border-color:var(--gold);color:var(--gold)}
+    .hard-copy-notice{
+      margin-top:20px;display:flex;align-items:flex-start;gap:10px;
+      background:rgba(255,107,53,.08);border:1px solid rgba(255,107,53,.25);
+      border-radius:14px;padding:14px 18px;font-size:.83rem;color:var(--t2);
+    }
+
+    /* ─── DOCUMENTS REQUIRED ─── */
+    #docs{background:linear-gradient(180deg,#0a1020 0%,var(--deep) 100%)}
+    .docs-grid{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+      gap:16px;margin-top:46px;
+    }
+    .doc-card{
+      background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+      border-radius:20px;padding:24px 20px;
+      display:flex;align-items:flex-start;gap:14px;
+      transition:transform .3s,border-color .3s,box-shadow .3s;
+    }
+    .doc-card:hover{
+      transform:translateY(-6px);
+      border-color:rgba(245,197,24,.35);
+      box-shadow:0 18px 45px rgba(0,0,0,.4);
+    }
+    .doc-icon{
+      width:48px;height:48px;border-radius:13px;flex-shrink:0;
+      display:flex;align-items:center;justify-content:center;font-size:1.4rem;
+      background:linear-gradient(135deg,rgba(245,197,24,.15),rgba(255,107,53,.15));
+      border:1px solid rgba(245,197,24,.18);
+    }
+    .doc-info h3{font-size:.97rem;font-weight:700;margin-bottom:4px}
+    .doc-info p{font-size:.8rem;color:var(--t2);line-height:1.55}
+
+    /* ─── HOW TO REGISTER ─── */
+    #how{background:var(--deep)}
+    .steps-grid{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+      gap:16px;margin-top:48px;counter-reset:step;
+    }
+    .step-card{
+      background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+      border-radius:22px;padding:28px 22px;
+      position:relative;overflow:hidden;
+      transition:transform .3s,border-color .3s;
+      counter-increment:step;
+    }
+    .step-card:hover{transform:translateY(-6px);border-color:rgba(245,197,24,.35)}
+    .step-card::before{
+      content:counter(step);
+      position:absolute;top:-12px;right:12px;
+      font-size:5rem;font-weight:900;color:rgba(245,197,24,.06);line-height:1;
+    }
+    .step-num{
+      width:44px;height:44px;border-radius:50%;
+      background:linear-gradient(135deg,var(--gold),var(--orange));
+      display:flex;align-items:center;justify-content:center;
+      font-weight:900;font-size:1rem;color:var(--deep);
+      margin-bottom:16px;box-shadow:0 4px 16px rgba(245,197,24,.3);
+    }
+    .step-card h3{font-size:.97rem;font-weight:700;margin-bottom:6px}
+    .step-card p{font-size:.8rem;color:var(--t2);line-height:1.6}
+
+    /* ─── NOTICES ─── */
+    #notices{background:linear-gradient(180deg,var(--deep) 0%,#080c1e 100%)}
+    .notices-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px;margin-top:44px}
+    .notice{
+      border-radius:22px;padding:26px 22px;border:1.5px solid;
+      position:relative;overflow:hidden;
+      transition:transform .3s,box-shadow .3s;
+    }
+    .notice:hover{transform:translateY(-5px);box-shadow:0 20px 50px rgba(0,0,0,.4)}
+    .notice::after{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+    .notice.red{background:rgba(255,80,80,.06);border-color:rgba(255,80,80,.22)}
+    .notice.red::after{background:linear-gradient(90deg,#ff5050,#ff3030)}
+    .notice.amber{background:rgba(245,197,24,.06);border-color:rgba(245,197,24,.22)}
+    .notice.amber::after{background:linear-gradient(90deg,var(--gold),var(--orange))}
+    .notice-icon{font-size:1.9rem;margin-bottom:10px}
+    .notice h3{font-size:.97rem;font-weight:700;margin-bottom:6px}
+    .notice p{font-size:.82rem;color:var(--t2);line-height:1.62}
+
+    /* ─── CTA ─── */
+    #cta{
+      padding:100px 48px;text-align:center;
+      background:linear-gradient(145deg,#0a1020,#130a25);
+      position:relative;overflow:hidden;
+    }
+    #cta::before{
+      content:'';position:absolute;inset:0;
+      background:radial-gradient(ellipse 70% 55% at 50% 50%,rgba(245,197,24,.1),transparent 70%);
+    }
+    .cta-wrap{position:relative;z-index:1;max-width:680px;margin:0 auto}
+    .cta-h{font-size:clamp(2.1rem,5vw,3.4rem);font-weight:900;line-height:1.1;margin-bottom:18px}
+    .cta-p{font-size:1rem;color:var(--t2);margin-bottom:38px;line-height:1.75}
+    .cta-btn{
+      display:inline-flex;align-items:center;gap:10px;
+      background:linear-gradient(135deg,var(--gold),var(--orange));
+      color:var(--deep);font-weight:900;font-size:1.1rem;
+      padding:18px 50px;border-radius:50px;text-decoration:none;
+      animation:ctaGlow 2.6s ease infinite;
+      transition:transform .25s;
+    }
+    @keyframes ctaGlow{
+      0%,100%{box-shadow:0 8px 40px rgba(245,197,24,.4)}
+      50%{box-shadow:0 8px 65px rgba(245,197,24,.75),0 0 30px rgba(255,107,53,.3)}
+    }
+    .cta-btn:hover{transform:translateY(-4px) scale(1.02)}
+    .cta-also{margin-top:22px;font-size:.83rem;color:var(--t3)}
+    .cta-also a{color:var(--gold);text-decoration:none}
+    .cta-also a:hover{text-decoration:underline}
+
+    /* ─── FOOTER ─── */
+    footer{
+      background:#040610;padding:44px 48px 30px;
+      border-top:1px solid rgba(255,255,255,.06);
+    }
+    .footer-inner{
+      max-width:1160px;margin:0 auto;
+      display:flex;align-items:flex-start;justify-content:space-between;
+      gap:32px;flex-wrap:wrap;
+    }
+    .footer-brand .logo-badge{width:46px;height:46px;font-size:1.1rem;margin-bottom:10px}
+    .footer-brand h2{font-size:1.15rem;font-weight:800;color:var(--gold);margin-bottom:4px}
+    .footer-brand p{font-size:.78rem;color:var(--t3);line-height:1.6;max-width:240px}
+    .footer-links h4{font-size:.78rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--t3);margin-bottom:14px}
+    .footer-links a{
+      display:block;font-size:.85rem;color:var(--t2);text-decoration:none;
+      margin-bottom:8px;transition:color .2s;
+    }
+    .footer-links a:hover{color:var(--gold)}
+    .footer-bottom{
+      max-width:1160px;margin:28px auto 0;
+      padding-top:20px;border-top:1px solid rgba(255,255,255,.06);
+      display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;
+    }
+    .footer-bottom p{font-size:.78rem;color:var(--t3)}
+    .footer-slogan{font-size:.85rem;font-style:italic;color:rgba(255,255,255,.25)}
+
+    /* ─── PARTICLES ─── */
+    #particles{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+    .pt{
+      position:absolute;border-radius:50%;
+      background:rgba(245,197,24,.18);
+      animation:rise linear infinite;
+    }
+    @keyframes rise{
+      0%{transform:translateY(110vh) scale(0);opacity:0}
+      10%{opacity:1;transform:translateY(90vh) scale(1)}
+      90%{opacity:.5}
+      100%{transform:translateY(-80px) scale(.5);opacity:0}
+    }
+
+    /* ─── REVEAL ─── */
+    .rv{opacity:0;transform:translateY(26px);transition:opacity .65s ease,transform .65s ease}
+    .rv.on{opacity:1;transform:translateY(0)}
+
+    /* ─── RESPONSIVE ─── */
+    @media(max-width:900px){
+      nav{padding:0 22px}
+      .nav-consent{display:none}
+      .hero-content{padding:100px 22px 70px;max-width:100%}
+      .hero-floats{display:none}
+      .hero-shape{display:none}
+      .attract-grid{grid-template-columns:1fr}
+      .attract-card.big{grid-row:span 1;min-height:280px}
+      .attract-card.sm{min-height:200px}
+      .sec{padding:64px 22px}
+      .consent-box{padding:30px 24px;flex-direction:column}
+      footer{padding:36px 22px 24px}
+      .footer-inner{flex-direction:column;gap:28px}
+      .footer-bottom{flex-direction:column;text-align:center}
+    }
+    @media(max-width:500px){
+      .stats-bar{flex-direction:column}
+      .stat{border-right:none;border-bottom:1px solid rgba(255,255,255,.07);max-width:100%}
+      .stat:last-child{border-bottom:none}
+      .steps-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+<div id="particles"></div>
+
+<!-- ═══ NAV ═══ -->
+<nav id="nav">
+  <a href="#" class="logo" id="logo-link">
+    <div class="logo-badge">BC</div>
+    <div>
+      <div class="logo-text">BeyondCampus.Co</div>
+      <div class="logo-sub">Journeys Beyond Classrooms</div>
+    </div>
+  </a>
+  <div class="nav-right">
+    <a href="https://drive.google.com/uc?export=download&id=1mWKEZkh4ib1MXF89ULbSwSWWtsFj-DSX"
+       class="nav-consent" id="nav-consent-btn" download>
+      ⬇️ Consent Form
+    </a>
+    <a href="https://forms.gle/M1ZPQpDqm8g7j48s6" target="_blank" rel="noopener"
+       class="nav-pass" id="nav-pass-btn">
+      🎟️ Grab Pass
+    </a>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-shape"></div>
+
+  <div class="hero-content">
+    <div class="hero-pill"><span class="blink"></span> Registration Open Now</div>
+    <h1 class="hero-h1">
+      <span>TRIP TO</span>
+      PUNJOY<br/>BATHINDA
+    </h1>
+    <p class="hero-desc">
+      North India's most epic waterpark + adventure + gaming destination. BeyondCampus.Co is taking you there — slides, waves, zip lines, VR, food & memories that last forever. 🌊🎢
+    </p>
+    <p class="hero-slogan">"Of the students, by the students, for the students!"</p>
+    <div class="hero-actions">
+      <a href="https://forms.gle/M1ZPQpDqm8g7j48s6" target="_blank" rel="noopener"
+         class="btn-gold" id="hero-grab-btn">🎟️ Grab Your Pass</a>
+      <a href="#consent" class="btn-ghost" id="hero-consent-btn">📥 Consent Form</a>
+    </div>
+  </div>
+
+  <!-- floating info cards -->
+  <div class="hero-floats">
+    <div class="float-card">
+      <div class="float-icon">🌊</div>
+      <div><div class="float-label">Wave Pool</div><div class="float-val">+ 10 Water Slides</div></div>
+    </div>
+    <div class="float-card">
+      <div class="float-icon">🧗</div>
+      <div><div class="float-label">Adventure Park</div><div class="float-val">Zip Line · Rope Course</div></div>
+    </div>
+    <div class="float-card">
+      <div class="float-icon">🎮</div>
+      <div><div class="float-label">PunFun Zone</div><div class="float-val">VR · Bowling · Trampoline</div></div>
+    </div>
+  </div>
+
+  <div class="scroll-cue">
+    <div class="scroll-line"></div>
+    Explore
+  </div>
+</section>
+
+<!-- ═══ STATS ═══ -->
+<div class="stats-bar">
+  <div class="stat rv"><div class="stat-n">20+</div><div class="stat-l">Acres of Fun</div></div>
+  <div class="stat rv"><div class="stat-n">100%</div><div class="stat-l">Student-Led Trip</div></div>
+  <div class="stat rv"><div class="stat-n">4</div><div class="stat-l">Attraction Zones</div></div>
+  <div class="stat rv"><div class="stat-n">⚡</div><div class="stat-l">Limited Passes</div></div>
+</div>
+
+<!-- ═══ ATTRACTIONS ═══ -->
+<section id="attractions">
+  <div class="sec">
+    <div class="rv">
+      <span class="tag">🏝️ What Awaits You</span>
+      <h2 class="sec-title">Explore Punjoy's<br/>Epic Attractions</h2>
+      <p class="sec-sub">From thrilling water slides to VR gaming — Punjoy Bathinda has it all packed in 20 acres of pure fun.</p>
+    </div>
+    <div class="attract-grid rv">
+      <!-- BIG CARD -->
+      <div class="attract-card big">
+        <img src="wavepool.jpg" alt="Wave Pool & Water Park at Punjoy Bathinda" loading="lazy"/>
+        <div class="card-overlay"></div>
+        <div class="card-label">
+          <span class="card-tag">🌊 Water Park</span>
+          <div class="card-title">Wave Pool & Lazy River</div>
+          <div class="card-desc">Multi-racer slides · Tube slides · Free-fall · Aqua Loop · Rain Dance</div>
+        </div>
+        <div class="card-arrow">↗</div>
+      </div>
+      <!-- RIGHT SMALL CARDS -->
+      <div class="attract-card sm">
+        <img src="slides.jpg" alt="Water Slides at Punjoy" loading="lazy"/>
+        <div class="card-overlay"></div>
+        <div class="card-label">
+          <span class="card-tag">🎢 Thrill Slides</span>
+          <div class="card-title">Aqua Loop & Racer Slides</div>
+          <div class="card-desc">Body slides · Free-fall · Tube thrills</div>
+        </div>
+        <div class="card-arrow">↗</div>
+      </div>
+      <div class="attract-card sm">
+        <img src="adventure.jpg" alt="Adventure Park Zip Line" loading="lazy"/>
+        <div class="card-overlay"></div>
+        <div class="card-label">
+          <span class="card-tag">🧗 Adventure Park</span>
+          <div class="card-title">Zip Line & Rope Course</div>
+          <div class="card-desc">High ropes · Climbing wall · Outdoor adventure</div>
+        </div>
+        <div class="card-arrow">↗</div>
+      </div>
+    </div>
+
+    <!-- Full-width gaming card -->
+    <div class="attract-card rv" style="margin-top:18px;min-height:260px">
+      <img src="gaming.jpg" alt="PunFun Gaming Zone at Punjoy" loading="lazy" style="width:100%;height:100%;object-fit:cover"/>
+      <div class="card-overlay"></div>
+      <div class="card-label">
+        <span class="card-tag">🎮 PunFun Zone</span>
+        <div class="card-title">VR Gaming · Bowling · Trampoline · Mirror Maze · Haunted House</div>
+        <div class="card-desc">North India's most exciting indoor entertainment zone</div>
+      </div>
+      <div class="card-arrow">↗</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CONSENT FORM ═══ -->
+<section id="consent">
+  <div class="sec">
+    <div class="rv">
+      <span class="tag">📋 Required Document</span>
+      <h2 class="sec-title">Download &amp; Fill<br/>the Consent Form</h2>
+      <p class="sec-sub">Every student must fill, sign and upload the consent form. Also bring a hard copy on the day of the trip.</p>
+    </div>
+    <div class="consent-box rv">
+      <div class="consent-left">
+        <h3>Consent Form — PunJoy Trip 2026</h3>
+        <p>This form is mandatory for all participants. Parents/guardians must sign for students who are minors. Upload the scanned copy in the Google Form and carry the original on trip day.</p>
+        <div class="consent-steps">
+          <div class="cs"><div class="cs-num">1</div> Download the consent form PDF</div>
+          <div class="cs"><div class="cs-num">2</div> Print and fill all details clearly</div>
+          <div class="cs"><div class="cs-num">3</div> Get it signed (parent/guardian if required)</div>
+          <div class="cs"><div class="cs-num">4</div> Scan & upload to the Google Form</div>
+          <div class="cs"><div class="cs-num">5</div> Bring the hard copy on trip day</div>
+        </div>
+        <div class="hard-copy-notice" style="margin-top:18px">
+          ⚠️ &nbsp;<span><strong>Hard copy is mandatory.</strong> Digital copy alone will NOT be accepted on trip day. Bring the signed physical form whenever invited.</span>
+        </div>
+      </div>
+      <div class="consent-right">
+        <a href="https://drive.google.com/uc?export=download&id=1mWKEZkh4ib1MXF89ULbSwSWWtsFj-DSX"
+           class="btn-download" id="consent-download-btn" download>
+          ⬇️ Download Consent Form
+        </a>
+        <a href="https://drive.google.com/file/d/1mWKEZkh4ib1MXF89ULbSwSWWtsFj-DSX/view?usp=sharing"
+           target="_blank" rel="noopener" class="btn-preview" id="consent-preview-btn">
+          👁️ Preview in Google Drive
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DOCUMENTS ═══ -->
+<section id="docs">
+  <div class="sec">
+    <div class="rv">
+      <span class="tag">📁 Checklist</span>
+      <h2 class="sec-title">Documents to Upload<br/>on Google Form</h2>
+      <p class="sec-sub">Have all of these ready before you open the form. Incomplete submissions will not be considered.</p>
+    </div>
+    <div class="docs-grid">
+      <div class="doc-card rv"><div class="doc-icon">👤</div><div class="doc-info"><h3>Full Name</h3><p>Your complete legal name as on official documents.</p></div></div>
+      <div class="doc-card rv"><div class="doc-icon">🎓</div><div class="doc-info"><h3>Trade &amp; Registration No.</h3><p>Your trade name and institute registration number.</p></div></div>
+      <div class="doc-card rv"><div class="doc-icon">📄</div><div class="doc-info"><h3>Allotment Letter / ID Card</h3><p>Your allotment letter or institute-issued identity card.</p></div></div>
+      <div class="doc-card rv"><div class="doc-icon">🪪</div><div class="doc-info"><h3>Aadhar Card</h3><p>Clear scan or photo of your Aadhar for identity verification.</p></div></div>
+      <div class="doc-card rv"><div class="doc-icon">📝</div><div class="doc-info"><h3>Consent Form (Signed)</h3><p>Downloaded, filled, signed &amp; scanned. Bring hard copy too.</p></div></div>
+      <div class="doc-card rv"><div class="doc-icon">💳</div><div class="doc-info"><h3>Payment Screenshot</h3><p>Pay via QR code in the form, then upload the screenshot immediately.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ HOW TO REGISTER ═══ -->
+<section id="how">
+  <div class="sec">
+    <div class="rv">
+      <span class="tag">🗺️ Step by Step</span>
+      <h2 class="sec-title">How to Register</h2>
+      <p class="sec-sub">Follow these five steps carefully to lock in your spot for PunJoy Bathinda 2026.</p>
+    </div>
+    <div class="steps-grid">
+      <div class="step-card rv">
+        <div class="step-num">1</div>
+        <h3>Open Google Form</h3>
+        <p>Click "Grab Your Pass" to open the official BeyondCampus.Co registration form.</p>
+      </div>
+      <div class="step-card rv">
+        <div class="step-num">2</div>
+        <h3>Download Consent Form</h3>
+        <p>Download, print, fill &amp; sign the consent form. Upload the scan to the form.</p>
+      </div>
+      <div class="step-card rv">
+        <div class="step-num">3</div>
+        <h3>Choose Pass &amp; Pay</h3>
+        <p>Select your pass type and pay using the QR code inside the form. Save your screenshot.</p>
+      </div>
+      <div class="step-card rv">
+        <div class="step-num">4</div>
+        <h3>Upload All Documents</h3>
+        <p>Upload Name, Trade/Reg No., ID/Allotment, Aadhar, Consent Form &amp; Payment SS.</p>
+      </div>
+      <div class="step-card rv">
+        <div class="step-num">🎉</div>
+        <h3>You're In!</h3>
+        <p>Wait for confirmation from BeyondCampus.Co and bring the hard copy on trip day.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ NOTICES ═══ -->
+<section id="notices">
+  <div class="sec">
+    <div class="rv">
+      <span class="tag">⚠️ Must Read</span>
+      <h2 class="sec-title">Important Notices</h2>
+      <p class="sec-sub">These rules are strictly enforced. Please read carefully before registering.</p>
+    </div>
+    <div class="notices-grid">
+      <div class="notice red rv">
+        <div class="notice-icon">🚫</div>
+        <h3>No Refunds on Invalid Passes</h3>
+        <p>If anyone buys an invalid pass or tries to scam us, no refund will be given under any circumstances. Register only through the official Google Form.</p>
+      </div>
+      <div class="notice amber rv">
+        <div class="notice-icon">📋</div>
+        <h3>Hard Copy of Consent Form Is Mandatory</h3>
+        <p>You must carry the physical signed consent form whenever invited to any trip event. A digital copy alone will not be accepted.</p>
+      </div>
+      <div class="notice amber rv">
+        <div class="notice-icon">✅</div>
+        <h3>Complete Submissions Only</h3>
+        <p>All required documents and a valid payment screenshot must be uploaded. Incomplete forms will be rejected without notice.</p>
+      </div>
+      <div class="notice red rv">
+        <div class="notice-icon">⏳</div>
+        <h3>Limited Passes — Act Fast!</h3>
+        <p>Passes are limited and selling out quickly. Register immediately to secure your spot. We cannot accommodate late registrations.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section id="cta">
+  <div class="cta-wrap rv">
+    <span class="tag">🚀 Don't Miss Out</span>
+    <h2 class="cta-h">Ready for PunJoy<br/>Bathinda? 🌊</h2>
+    <p class="cta-p">BeyondCampus.Co is making it happen — wave pool, slides, zip lines, VR gaming, food &amp; your entire batch together. This is the trip of the year. Grab your pass before it's gone!</p>
+    <a href="https://forms.gle/M1ZPQpDqm8g7j48s6" target="_blank" rel="noopener"
+       class="cta-btn" id="cta-main-btn">🎟️ Register Now — Grab Your Pass!</a>
+    <p class="cta-also">
+      Need the consent form first?
+      <a href="https://drive.google.com/uc?export=download&id=1mWKEZkh4ib1MXF89ULbSwSWWtsFj-DSX" download id="cta-consent-link">⬇️ Download it here</a>
+    </p>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo-badge" style="width:46px;height:46px;font-size:1.1rem;border-radius:13px;margin-bottom:10px">BC</div>
+      <h2>BeyondCampus.Co</h2>
+      <p style="margin-top:6px">Of the students, by the students, for the students. Journeys Beyond Classrooms.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <a href="#attractions" id="ft-attractions">🏝️ Attractions</a>
+      <a href="#consent" id="ft-consent">📋 Consent Form</a>
+      <a href="#docs" id="ft-docs">📁 Documents</a>
+      <a href="#how" id="ft-how">🗺️ How to Register</a>
+      <a href="#notices" id="ft-notices">⚠️ Notices</a>
+    </div>
+    <div class="footer-links">
+      <h4>Register</h4>
+      <a href="https://forms.gle/M1ZPQpDqm8g7j48s6" target="_blank" rel="noopener" id="ft-form">🎟️ Grab Your Pass</a>
+      <a href="https://drive.google.com/uc?export=download&id=1mWKEZkh4ib1MXF89ULbSwSWWtsFj-DSX" download id="ft-download">⬇️ Download Consent Form</a>
+      <a href="https://drive.google.com/file/d/1mWKEZkh4ib1MXF89ULbSwSWWtsFj-DSX/view" target="_blank" rel="noopener" id="ft-preview">👁️ Preview Consent Form</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 BeyondCampus.Co — PunJoy Bathinda Trip</p>
+    <p class="footer-slogan">"Of the students, by the students, for the students."</p>
+  </div>
+</footer>
+
+<script>
+  // ── PARTICLES ──
+  const pw = document.getElementById('particles');
+  for(let i=0;i<28;i++){
+    const d=document.createElement('div'); d.className='pt';
+    const s=Math.random()*5+2;
+    d.style.cssText=`width:${s}px;height:${s}px;left:${Math.random()*100}%;animation-duration:${Math.random()*18+10}s;animation-delay:-${Math.random()*15}s;opacity:${Math.random()*.4+.08};`;
+    pw.appendChild(d);
+  }
+
+  // ── NAV SCROLL ──
+  const nav=document.getElementById('nav');
+  window.addEventListener('scroll',()=>{
+    nav.classList.toggle('scrolled',window.scrollY>60);
+  },{passive:true});
+
+  // ── SCROLL REVEAL ──
+  const io=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on');});
+  },{threshold:.1});
+  document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+  // ── STAGGER DOC CARDS ──
+  document.querySelectorAll('.doc-card').forEach((el,i)=>{el.style.transitionDelay=`${i*.07}s`;});
+  document.querySelectorAll('.step-card').forEach((el,i)=>{el.style.transitionDelay=`${i*.08}s`;});
+</script>
+</body>
+</html>
